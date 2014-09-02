@@ -2,6 +2,8 @@ Ozdata
 ---------------------
 
 This is a simple library, app and importer to handle Australian postcode data written in Go.
+It is very much a work in progress and the Go is probably quite shoddy so feel free to fork
+and submit pull requests.
 
 The data is provided by Datalicious:
 
@@ -17,12 +19,12 @@ Useage
 
 To include the library in your projects, go get it and import it:
 
-`go get github.com/tomjowitt/ozdata`
+    go get github.com/tomjowitt/ozdata`
 
-`import (
-    "github.com/tomjowitt/ozdata/lib"
-)`
+    import (
+        "github.com/tomjowitt/ozdata/lib"
+    )
 
 To query the data using the built-in app simply pass a p (postcode) flag to the application:
 
-`go run app/main.go -p 2041`
+    go run app/main.go -p 2041
