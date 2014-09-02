@@ -72,12 +72,14 @@ func main() {
 		suburbs = append(suburbs, suburb)
 	}
 
-	jsonData, err := json.MarshalIndent(suburbs, "", "    ")
+	jsonData, err := json.Marshal(suburbs)
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	err = ioutil.WriteFile("data/data.json", jsonData, 0644)
+	jsonResult := fmt.Sprintf(`{"suburbs": %s}`, jsonData)
+
+	err = ioutil.WriteFile("data/data.json", []byte(jsonResult), 0644)
 	if err != nil {
 		fmt.Println("WriteFile error:", err)
 	}
