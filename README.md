@@ -17,9 +17,11 @@ http://www.postconnect.com.au/postcode-data
 Useage
 ---------------------
 
-To include the library in your projects, go get it and import it:
+To include the library in your projects, go get it:
 
-    go get github.com/tomjowitt/ozdata`
+    $ go get github.com/tomjowitt/ozdata
+
+And import it:
 
     import (
         "github.com/tomjowitt/ozdata/lib"
