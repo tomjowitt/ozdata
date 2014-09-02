@@ -1,0 +1,134 @@
+{
+    "countries":  [
+        {
+            "Name": "Australia",
+            "Code": "AU"
+        }
+    ],
+    "states":  [
+        {
+            "Name": "Australian Capital Territory",
+            "Code": "ACT",
+            "Capital": "Canberra",
+            "Country": {
+                "Name": "Australia",
+                "Code": "AU"
+            },
+            "PostcodeRange": [
+                {
+                    "High": 2618,
+                    "Low": 2600
+                },
+                {
+                    "High": 2999,
+                    "Low": 2900
+                }
+            ]
+        },
+        {
+            "Name": "New South Wales",
+            "Code": "NSW",
+            "Capital": "Sydney",
+            "Country": {
+                "Name": "Australia",
+                "Code": "AU"
+            },
+            "PostcodeRange": [
+                {
+                    "High": 2999,
+                    "Low": 2000
+                }
+            ]
+        },
+        {
+            "Name": "Northern Territory",
+            "Code": "NT",
+            "Capital": "Darwin",
+            "Country": {
+                "Name": "Australia",
+                "Code": "AU"
+            },
+            "PostcodeRange": [
+                {
+                    "Low": 800,
+                    "High": 999
+                }
+            ]
+        },
+        {
+            "Name": "Queensland",
+            "Code": "QLD",
+            "Capital": "Brisbane",
+            "Country": {
+                "Name": "Australia",
+                "Code": "AU"
+            },
+            "PostcodeRange": [
+                {
+                    "Low": 4000,
+                    "High": 4999
+                }
+            ]
+        },
+        {
+            "Name": "South Australia",
+            "Code": "SA",
+            "Capital": "Adelaide",
+            "Country": {
+                "Name": "Australia",
+                "Code": "AU"
+            },
+            "PostcodeRange": [
+                {
+                    "Low": 5000,
+                    "High": 5999
+                }
+            ]
+        },
+        {
+            "Name": "Tasmania",
+            "Code": "TAS",
+            "Capital": "Hobart",
+            "Country": {
+                "Name": "Australia",
+                "Code": "AU"
+            },
+            "PostcodeRange": [
+                {
+                    "Low": 7000,
+                    "High": 7999
+                }
+            ]
+        },
+        {
+            "Name": "Victoria",
+            "Code": "VIC",
+            "Capital": "Melbourne",
+            "Country": {
+                "Name": "Australia",
+                "Code": "AU"
+            },
+            "PostcodeRange": [
+                {
+                    "Low": 3000,
+                    "High": 3999
+                }
+            ]
+        },
+        {
+            "Name": "Western Australia",
+            "Code": "WA",
+            "Capital": "Perth",
+            "Country": {
+                "Name": "Australia",
+                "Code": "AU"
+            },
+            "PostcodeRange": [
+                {
+                    "Low": 6000,
+                    "High": 6999
+                }
+            ]
+        }
+    ]
+}
