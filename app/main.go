@@ -8,7 +8,7 @@ import (
 
 func main() {
 
-	var postcode = flag.Int64("postcode", 0, "A valid Australian postcode")
+	var postcode = flag.Int64("p", 0, "A valid Australian postcode")
 	flag.Parse()
 
 	fmt.Println("")
