@@ -20,7 +20,7 @@ func main() {
 		fmt.Println(err)
 	}
 
-	fmt.Println("Getting suburb By postcode:", *postcode, "...")
+	fmt.Println("Getting suburb By postcode:", *postcode)
 	subByPostcode, err := suburbData.GetSuburbByPostcode(*postcode)
 	if err != nil {
 		fmt.Println(err)
