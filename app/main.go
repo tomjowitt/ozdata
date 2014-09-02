@@ -2,16 +2,16 @@ package main
 
 import (
 	"fmt"
-	"github.com/tomjowitt/mockingbird/lib"
+	"github.com/tomjowitt/ozdata/lib"
 )
 
 func main() {
 
 	fmt.Println("")
-	fmt.Println("Welcome to Mockingbird")
+	fmt.Println("Welcome to Ozdata")
 	fmt.Println("")
 
-	data, err := mockingbird.NewStateData()
+	data, err := ozdata.NewStateData()
 	if err != nil {
 		fmt.Println(err)
 	}

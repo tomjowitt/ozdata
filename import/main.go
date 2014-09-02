@@ -4,7 +4,7 @@ import (
 	"encoding/csv"
 	"encoding/json"
 	"fmt"
-	"github.com/tomjowitt/mockingbird/lib"
+	"github.com/tomjowitt/ozdata/lib"
 	"io"
 	"io/ioutil"
 	"os"
@@ -22,9 +22,9 @@ func main() {
 	defer file.Close()
 
 	reader := csv.NewReader(file)
-	var suburbs []*mockingbird.Suburb
+	var suburbs []*ozdata.Suburb
 
-	stateData, err := mockingbird.NewStateData()
+	stateData, err := ozdata.NewStateData()
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -47,7 +47,7 @@ func main() {
 			fmt.Println(err)
 		}
 
-		coordinate := &mockingbird.Coordinate{
+		coordinate := &ozdata.Coordinate{
 			Lat:  xcoord,
 			Long: ycoord,
 		}
@@ -59,7 +59,7 @@ func main() {
 
 		state, err := stateData.GetStateByCode(record[2])
 
-		suburb := &mockingbird.Suburb{
+		suburb := &ozdata.Suburb{
 			Postcode:   postcodeInt,
 			Name:       strings.Title(strings.ToLower(record[1])),
 			Coordinate: *coordinate,
