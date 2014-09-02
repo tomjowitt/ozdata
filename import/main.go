@@ -27,6 +27,7 @@ func main() {
 	stateData, err := ozdata.NewStateData()
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	for {
@@ -41,10 +42,12 @@ func main() {
 		xcoord, err := strconv.ParseFloat(record[10], 10)
 		if err != nil {
 			fmt.Println(err)
+			return
 		}
 		ycoord, err := strconv.ParseFloat(record[11], 10)
 		if err != nil {
 			fmt.Println(err)
+			return
 		}
 
 		coordinate := &ozdata.Coordinate{
@@ -55,11 +58,13 @@ func main() {
 		postcodeInt, err := strconv.ParseInt(record[0], 10, 64)
 		if err != nil {
 			fmt.Println(err)
+			return
 		}
 
 		state, err := stateData.GetStateByCode(record[2])
 		if err != nil {
 			fmt.Println(err)
+			return
 		}
 
 		suburb := &ozdata.Suburb{
@@ -75,6 +80,7 @@ func main() {
 	jsonData, err := json.Marshal(suburbs)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	jsonResult := fmt.Sprintf(`{"suburbs": %s}`, jsonData)
@@ -82,6 +88,7 @@ func main() {
 	err = ioutil.WriteFile("data/data.json", []byte(jsonResult), 0644)
 	if err != nil {
 		fmt.Println("WriteFile error:", err)
+		return
 	}
 
 	fmt.Println("Data successfully imported to data/data.json")

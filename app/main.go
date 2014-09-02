@@ -18,12 +18,14 @@ func main() {
 	suburbData, err := ozdata.NewSuburbData()
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	fmt.Println("Getting suburb By postcode:", *postcode)
 	subByPostcode, err := suburbData.GetSuburbByPostcode(*postcode)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 	fmt.Println(subByPostcode)
 	fmt.Println("")

@@ -2,8 +2,8 @@ package ozdata
 
 import (
 	"encoding/json"
+	"errors"
 	"io/ioutil"
-	"log"
 	"os"
 )
 
@@ -29,34 +29,31 @@ func NewSuburbData() (response SuburbData, err error) {
 
 	if _, err := os.Stat(filename); err != nil {
 		if os.IsNotExist(err) {
-			log.Fatal("Could not find file data/data.json:", err)
+			return SuburbData{}, errors.New("Could not find file data/data.json")
 		}
 	}
 
 	datafile, err := ioutil.ReadFile(filename)
 	if err != nil {
-		log.Fatal("Could not read file data/data.json:", err)
+		return SuburbData{}, errors.New("Could not read file data/data.json")
 	}
 
 	data := SuburbData{}
 	err = json.Unmarshal([]byte(datafile), &data)
 	if err != nil {
-		log.Fatal("Error reading JSON data:", err)
+		return SuburbData{}, errors.New("Error reading JSON data")
 	}
 
 	return data, err
 }
 
 func (data *SuburbData) GetSuburbByPostcode(postcode int64) (sub Suburb, err error) {
-	if err != nil {
-		log.Fatal(err)
-	}
 
 	for _, v := range data.Suburbs {
 		if v.Postcode == postcode {
 			return v, err
 		}
 	}
-	log.Fatal("No suburb data")
-	return Suburb{}, err
+
+	return Suburb{}, errors.New("No suburb data")
 }
