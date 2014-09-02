@@ -58,6 +58,9 @@ func main() {
 		}
 
 		state, err := stateData.GetStateByCode(record[2])
+		if err != nil {
+			fmt.Println(err)
+		}
 
 		suburb := &ozdata.Suburb{
 			Postcode:   postcodeInt,
@@ -76,7 +79,7 @@ func main() {
 
 	err = ioutil.WriteFile("data/data.json", jsonData, 0644)
 	if err != nil {
-		fmt.Printf("ioutil.WriteFile error: %+v", err)
+		fmt.Println("WriteFile error:", err)
 	}
 
 	fmt.Println("Data successfully imported to data/data.json")

@@ -1,12 +1,9 @@
 package ozdata
 
 import (
-// "log"
-// "strconv"
-)
-
-const (
-	version = "0.0.1"
+	"encoding/json"
+	"log"
+	"os"
 )
 
 type SuburbData struct {
@@ -23,6 +20,30 @@ type Suburb struct {
 	Postcode   int64
 	Coordinate Coordinate
 	State      State
+}
+
+func NewSuburbData() (response SuburbData, err error) {
+
+	filename := "data/data.json"
+
+	if _, err := os.Stat(filename); err != nil {
+		if os.IsNotExist(err) {
+			log.Fatal(err)
+		}
+	}
+
+	datafile, err := ioutil.ReadFile(filename)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	data := StateData{}
+	err = json.Unmarshal([]byte(datafile), &data)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return data, err
 }
 
 // func (data *SuburbData) GetSuburbByPostcode(postcode string) (sub Suburb, err error) {
