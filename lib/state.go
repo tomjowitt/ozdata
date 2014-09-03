@@ -2,8 +2,8 @@ package ozdata
 
 import (
 	"encoding/json"
+	"errors"
 	"io/ioutil"
-	"log"
 	"os"
 	"strconv"
 )
