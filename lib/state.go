@@ -37,19 +37,19 @@ func NewStateData() (response StateData, err error) {
 
 	if _, err := os.Stat(filename); err != nil {
 		if os.IsNotExist(err) {
-			log.Fatal(err)
+			return StateData{}, errors.New("Could not find file data/states.json")
 		}
 	}
 
 	datefile, err := ioutil.ReadFile(filename)
 	if err != nil {
-		log.Fatal(err)
+		return StateData{}, errors.New("Could not read file data/states.json")
 	}
 
 	data := StateData{}
 	err = json.Unmarshal([]byte(datefile), &data)
 	if err != nil {
-		log.Fatal(err)
+		return StateData{}, errors.New("Invalid JSON in data/states.json")
 	}
 
 	return data, err
@@ -66,7 +66,7 @@ func (data *StateData) GetStates() []State {
 func (data *StateData) GetStateByPostCode(postcode string) (state State, err error) {
 	postcodeInt, err := strconv.ParseInt(postcode, 10, 64)
 	if err != nil {
-		log.Fatal(err)
+		return State{}, errors.New("Could not convert postcode to an integer")
 	}
 	for _, v := range data.States {
 		for _, r := range v.PostcodeRange {
@@ -75,8 +75,7 @@ func (data *StateData) GetStateByPostCode(postcode string) (state State, err err
 			}
 		}
 	}
-	log.Fatal("Cannot find state")
-	return State{}, err
+	return State{}, errors.New("Invalid state code")
 }
 
 func (data *StateData) GetStateByCode(code string) (state State, err error) {
@@ -85,6 +84,5 @@ func (data *StateData) GetStateByCode(code string) (state State, err error) {
 			return v, err
 		}
 	}
-	log.Fatal("Cannot find state")
-	return State{}, err
+	return State{}, errors.New("Could not find state")
 }
