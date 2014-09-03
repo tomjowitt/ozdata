@@ -11,9 +11,14 @@ func main() {
 	var postcode = flag.Int64("p", 0, "A valid Australian postcode")
 	flag.Parse()
 
-	fmt.Println("")
+	fmt.Println()
 	fmt.Println("Welcome to Ozdata")
-	fmt.Println("")
+	fmt.Println()
+
+	if *postcode == 0 {
+		fmt.Println("Please enter a valid postcode to check")
+		return
+	}
 
 	suburbData, err := ozdata.NewSuburbData()
 	if err != nil {
@@ -28,7 +33,7 @@ func main() {
 		return
 	}
 	fmt.Println(subByPostcode)
-	fmt.Println("")
+	fmt.Println()
 
 	return
 
