@@ -14,7 +14,7 @@ but in commercial applications it requires a licence.
 
 http://www.postconnect.com.au/postcode-data
 
-Library useage
+Library usage
 ---------------------
 
 To include the library in your projects, go get it:
@@ -29,12 +29,14 @@ And import it:
 
 To use the data within your code:
 
-    data, err := ozdata.NewSuburbData()
+    data, err := ozdata.NewSuburbs()
     if err != nil {
         fmt.Println(err)
     }
 
-    suburb, err := data.GetSuburbByPostcode(2041)
+    var postcode int64 = 2041
+
+    suburb, err := data.Suburb(postcode)
     if err != nil {
         fmt.Println(err)
     }
@@ -46,41 +48,33 @@ The response is based on the following data structure and will return a Suburb t
     type Suburb struct {
         Name       string
         Postcode   int64
-        Coordinate Coordinate
-        State      State
+        Coordinate struct {
+            Lat  float64
+            Long float64
+        }
+        State struct {
+            Name          string
+            Code          string
+            Capital       string
+            Country       struct {
+                Name string
+                Code string
+            }
+            PostcodeRange [] struct {
+                Low  int64
+                High int64
+            }
+        }
     }
 
-    type Coordinate struct {
-        Lat  float64
-        Long float64
-    }
-
-    type State struct {
-        Name          string
-        Code          string
-        Capital       string
-        Country       Country
-        PostcodeRange []PostcodeRange
-    }
-
-    type Country struct {
-        Name string
-        Code string
-    }
-
-    type PostcodeRange struct {
-        Low  int64
-        High int64
-    }
-
-Application useage
+Application usage
 ---------------------
 
 To query the data using the built-in app simply pass a p (postcode) flag to the application:
 
     $ go run app/main.go -p 2041
 
-LICENCE (excluding data)
+License (excluding data)
 ---------------------
 
     The MIT License (MIT)
