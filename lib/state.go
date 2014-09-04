@@ -36,19 +36,19 @@ func NewStates() (response States, err error) {
 
 	if _, err := os.Stat(filename); err != nil {
 		if os.IsNotExist(err) {
-			return States{}, errors.New("Could not find file data/states.json")
+			return States{}, errors.New("Could not find file " + filename)
 		}
 	}
 
 	datefile, err := ioutil.ReadFile(filename)
 	if err != nil {
-		return States{}, errors.New("Could not read file data/states.json")
+		return States{}, errors.New("Could not read file " + filename)
 	}
 
 	data := States{}
 	err = json.Unmarshal([]byte(datefile), &data)
 	if err != nil {
-		return States{}, errors.New("Invalid JSON in data/states.json")
+		return States{}, errors.New("Invalid JSON in " + filename)
 	}
 
 	return data, err
