@@ -85,11 +85,11 @@ func main() {
 
 	jsonResult := fmt.Sprintf(`{"suburbs": %s}`, jsonData)
 
-	err = ioutil.WriteFile("data/data.json", []byte(jsonResult), 0644)
+	err = ioutil.WriteFile("data/suburbs.json", []byte(jsonResult), 0644)
 	if err != nil {
 		fmt.Println("WriteFile error:", err)
 		return
 	}
 
-	fmt.Println("Data successfully imported to data/data.json")
+	fmt.Println("Data successfully imported to data/suburbs.json")
 }
