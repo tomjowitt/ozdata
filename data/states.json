@@ -1,10 +1,4 @@
 {
-    "countries":  [
-        {
-            "Name": "Australia",
-            "Code": "AU"
-        }
-    ],
     "states":  [
         {
             "Name": "Australian Capital Territory",
