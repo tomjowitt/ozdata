@@ -2,8 +2,7 @@ Ozdata
 ---------------------
 
 This is a simple library, app and importer to handle geocoded Australian postcode data written in Go.
-It is very much a work in progress and the code is probably quite shoddy so feel free to fork
-and submit pull requests.
+It is very much a work in progress so feel free to fork and submit pull requests for both the code and the raw data.
 
 The data is provided by Datalicious:
 
@@ -34,14 +33,14 @@ import (
 To use the data within your code:
 
 ```go
-data, err := ozdata.NewSuburbs()
+suburbs, err := ozdata.NewSuburbs()
 if err != nil {
     fmt.Println(err)
 }
 
 var postcode int64 = 2041
 
-suburb, err := data.Suburb(postcode)
+suburb, err := suburbs.Suburb(postcode)
 if err != nil {
     fmt.Println(err)
 }
@@ -49,7 +48,7 @@ if err != nil {
 // do something with suburb
 ```
 
-The response is based on the following data structure and will return a Suburb type:
+The response is a Suburb type with the following data structure:
 
 ```go
 type Suburb struct {
@@ -83,6 +82,17 @@ To query the data using the built-in app simply pass a p (postcode) flag to the 
 ```bash
 $ go run app/main.go -p 2041
 ```
+
+Importer usage
+---------------------
+
+To run the importer:
+
+```bash
+$ go run import/main.go
+```
+This will read data from the data/import.csv spreadsheet and load it into json objects. This only
+needs to be run if updates to the raw csv data have occurred.
 
 License (excluding data)
 ---------------------
