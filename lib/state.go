@@ -8,9 +8,8 @@ import (
 	"strconv"
 )
 
-type StateData struct {
-	Countries []Country `json:"countries"`
-	States    []State   `json:"states"`
+type States struct {
+	States []State `json:"states"`
 }
 
 type Country struct {
@@ -31,39 +30,35 @@ type PostcodeRange struct {
 	High int64
 }
 
-func NewStateData() (response StateData, err error) {
+func NewStates() (response States, err error) {
 
 	filename := "data/states.json"
 
 	if _, err := os.Stat(filename); err != nil {
 		if os.IsNotExist(err) {
-			return StateData{}, errors.New("Could not find file data/states.json")
+			return States{}, errors.New("Could not find file data/states.json")
 		}
 	}
 
 	datefile, err := ioutil.ReadFile(filename)
 	if err != nil {
-		return StateData{}, errors.New("Could not read file data/states.json")
+		return States{}, errors.New("Could not read file data/states.json")
 	}
 
-	data := StateData{}
+	data := States{}
 	err = json.Unmarshal([]byte(datefile), &data)
 	if err != nil {
-		return StateData{}, errors.New("Invalid JSON in data/states.json")
+		return States{}, errors.New("Invalid JSON in data/states.json")
 	}
 
 	return data, err
 }
 
-func (data *StateData) GetCountries() []Country {
-	return data.Countries
-}
-
-func (data *StateData) GetStates() []State {
+func (data *States) GetStates() []State {
 	return data.States
 }
 
-func (data *StateData) GetStateByPostCode(postcode string) (state State, err error) {
+func (data *States) GetStateByPostCode(postcode string) (state State, err error) {
 	postcodeInt, err := strconv.ParseInt(postcode, 10, 64)
 	if err != nil {
 		return State{}, errors.New("Could not convert postcode to an integer")
@@ -78,7 +73,7 @@ func (data *StateData) GetStateByPostCode(postcode string) (state State, err err
 	return State{}, errors.New("Invalid state code")
 }
 
-func (data *StateData) GetStateByCode(code string) (state State, err error) {
+func (data *States) State(code string) (state State, err error) {
 	for _, v := range data.States {
 		if code == v.Code {
 			return v, err

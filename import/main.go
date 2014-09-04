@@ -24,7 +24,7 @@ func main() {
 	reader := csv.NewReader(file)
 	var suburbs []*ozdata.Suburb
 
-	stateData, err := ozdata.NewStateData()
+	states, err := ozdata.NewStates()
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -61,7 +61,7 @@ func main() {
 			return
 		}
 
-		state, err := stateData.GetStateByCode(record[2])
+		state, err := states.State(record[2])
 		if err != nil {
 			fmt.Println(err)
 			return

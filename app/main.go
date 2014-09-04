@@ -20,19 +20,19 @@ func main() {
 		return
 	}
 
-	suburbData, err := ozdata.NewSuburbData()
+	suburbs, err := ozdata.NewSuburbs()
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
 	fmt.Println("Getting suburb By postcode:", *postcode)
-	subByPostcode, err := suburbData.GetSuburbByPostcode(*postcode)
+	suburb, err := suburbs.Suburb(*postcode)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(subByPostcode)
+	fmt.Println(suburb)
 	fmt.Println()
 
 	return

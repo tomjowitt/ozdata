@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-type SuburbData struct {
+type Suburbs struct {
 	Suburbs []Suburb `json:"suburbs"`
 }
 
@@ -23,31 +23,31 @@ type Suburb struct {
 	State      State
 }
 
-func NewSuburbData() (response SuburbData, err error) {
+func NewSuburbs() (response Suburbs, err error) {
 
 	filename := "data/data.json"
 
 	if _, err := os.Stat(filename); err != nil {
 		if os.IsNotExist(err) {
-			return SuburbData{}, errors.New("Could not find file data/data.json")
+			return Suburbs{}, errors.New("Could not find file data/data.json")
 		}
 	}
 
 	datafile, err := ioutil.ReadFile(filename)
 	if err != nil {
-		return SuburbData{}, errors.New("Could not read file data/data.json")
+		return Suburbs{}, errors.New("Could not read file data/data.json")
 	}
 
-	data := SuburbData{}
+	data := Suburbs{}
 	err = json.Unmarshal([]byte(datafile), &data)
 	if err != nil {
-		return SuburbData{}, errors.New("Error reading JSON data")
+		return Suburbs{}, errors.New("Error reading JSON data")
 	}
 
 	return data, err
 }
 
-func (data *SuburbData) GetSuburbByPostcode(postcode int64) (sub Suburb, err error) {
+func (data *Suburbs) Suburb(postcode int64) (sub Suburb, err error) {
 
 	for _, v := range data.Suburbs {
 		if v.Postcode == postcode {
