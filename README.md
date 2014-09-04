@@ -38,12 +38,15 @@ if err != nil {
     fmt.Println(err)
 }
 
-var postcode int64 = 2041
+var postcode int64 = 2042
 
 suburb, err := suburbs.Suburb(postcode)
 if err != nil {
     fmt.Println(err)
 }
+
+fmt.Println(suburb)
+// prints: {Enmore 2042 {-33.899362 151.171098} {New South Wales NSW Sydney {Australia AU} [{2000 2999}]}}
 
 // do something with suburb
 ```
