@@ -19,60 +19,70 @@ Library usage
 
 To include the library in your projects, go get it:
 
-    $ go get github.com/tomjowitt/ozdata
+```bash
+$ go get github.com/tomjowitt/ozdata
+```
 
 And import it:
 
-    import (
-        "github.com/tomjowitt/ozdata/lib"
-    )
+```go
+import (
+    "github.com/tomjowitt/ozdata/lib"
+)
+```
 
 To use the data within your code:
 
-    data, err := ozdata.NewSuburbs()
-    if err != nil {
-        fmt.Println(err)
-    }
+```go
+data, err := ozdata.NewSuburbs()
+if err != nil {
+    fmt.Println(err)
+}
 
-    var postcode int64 = 2041
+var postcode int64 = 2041
 
-    suburb, err := data.Suburb(postcode)
-    if err != nil {
-        fmt.Println(err)
-    }
+suburb, err := data.Suburb(postcode)
+if err != nil {
+    fmt.Println(err)
+}
 
-    // do something with suburb
+// do something with suburb
+```
 
 The response is based on the following data structure and will return a Suburb type:
 
-    type Suburb struct {
-        Name       string
-        Postcode   int64
-        Coordinate struct {
-            Lat  float64
-            Long float64
+```go
+type Suburb struct {
+    Name       string
+    Postcode   int64
+    Coordinate struct {
+        Lat  float64
+        Long float64
+    }
+    State struct {
+        Name          string
+        Code          string
+        Capital       string
+        Country       struct {
+            Name string
+            Code string
         }
-        State struct {
-            Name          string
-            Code          string
-            Capital       string
-            Country       struct {
-                Name string
-                Code string
-            }
-            PostcodeRange [] struct {
-                Low  int64
-                High int64
-            }
+        PostcodeRange [] struct {
+            Low  int64
+            High int64
         }
     }
+}
+```
 
 Application usage
 ---------------------
 
 To query the data using the built-in app simply pass a p (postcode) flag to the application:
 
-    $ go run app/main.go -p 2041
+```bash
+$ go run app/main.go -p 2041
+```
 
 License (excluding data)
 ---------------------
