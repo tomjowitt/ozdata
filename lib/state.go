@@ -34,10 +34,13 @@ func NewStates() (response States, err error) {
 
 	filename := "data/states.json"
 
-	if _, err := os.Stat(filename); err != nil {
-		if os.IsNotExist(err) {
-			return States{}, errors.New("Could not find file " + filename)
-		}
+	_, err = os.Stat(filename)
+	if err != nil {
+		return States{}, err
+	}
+
+	if os.IsNotExist(err) {
+		return States{}, errors.New("Could not find file " + filename)
 	}
 
 	datefile, err := ioutil.ReadFile(filename)

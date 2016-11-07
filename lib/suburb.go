@@ -27,10 +27,13 @@ func NewSuburbs() (response Suburbs, err error) {
 
 	filename := "data/suburbs.json"
 
-	if _, err := os.Stat(filename); err != nil {
-		if os.IsNotExist(err) {
-			return Suburbs{}, errors.New("Could not find file " + filename)
-		}
+	_, err = os.Stat(filename)
+	if err != nil {
+		return Suburbs{}, err
+	}
+
+	if os.IsNotExist(err) {
+		return Suburbs{}, errors.New("Could not find file " + filename)
 	}
 
 	datafile, err := ioutil.ReadFile(filename)

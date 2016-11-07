@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+
 	"github.com/tomjowitt/ozdata/lib"
 )
 
