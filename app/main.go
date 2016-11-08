@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/tomjowitt/ozdata/lib"
+	"github.com/tomjowitt/ozdata/ozdata"
 )
 
 func main() {
