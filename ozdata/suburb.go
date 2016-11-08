@@ -4,12 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"io/ioutil"
-	"os"
 )
-
-type Suburbs struct {
-	Suburbs []Suburb `json:"suburbs"`
-}
 
 type Coordinate struct {
 	Lat  float64
@@ -23,18 +18,12 @@ type Suburb struct {
 	State      State
 }
 
-func NewSuburbs() (response Suburbs, err error) {
+type Suburbs struct {
+	Suburbs []Suburb `json:"suburbs"`
+}
 
-	filename := "data/suburbs.json"
-
-	_, err = os.Stat(filename)
-	if err != nil {
-		return Suburbs{}, err
-	}
-
-	if os.IsNotExist(err) {
-		return Suburbs{}, errors.New("Could not find file " + filename)
-	}
+// NewSuburbs initialises the postcode data from a JSON file
+func NewSuburbs(filename string) (response Suburbs, err error) {
 
 	datafile, err := ioutil.ReadFile(filename)
 	if err != nil {
@@ -50,7 +39,8 @@ func NewSuburbs() (response Suburbs, err error) {
 	return data, err
 }
 
-func (data *Suburbs) Suburb(postcode int64) (sub Suburb, err error) {
+// GetSuburbByCode returns the suburb data for a specific postcode
+func (data *Suburbs) GetSuburbByCode(postcode int64) (sub Suburb, err error) {
 
 	for _, v := range data.Suburbs {
 		if v.Postcode == postcode {
@@ -58,5 +48,5 @@ func (data *Suburbs) Suburb(postcode int64) (sub Suburb, err error) {
 		}
 	}
 
-	return Suburb{}, errors.New("No suburb data")
+	return Suburb{}, errors.New("No suburb data for this postcode")
 }

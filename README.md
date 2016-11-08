@@ -26,21 +26,22 @@ And import it:
 
 ```go
 import (
-    "github.com/tomjowitt/ozdata/lib"
+    "github.com/tomjowitt/ozdata/ozdata"
 )
 ```
 
 To use the data within your code:
 
 ```go
-suburbs, err := ozdata.NewSuburbs()
+filename := "./data/test.json"
+suburbs, err := ozdata.NewSuburbs(filename)
 if err != nil {
     fmt.Println(err)
 }
 
 var postcode int64 = 2042
 
-suburb, err := suburbs.Suburb(postcode)
+suburb, err := suburbs.GetSuburbByCode(postcode)
 if err != nil {
     fmt.Println(err)
 }
@@ -69,7 +70,7 @@ type Suburb struct {
             Name string
             Code string
         }
-        PostcodeRange [] struct {
+        PostcodeRange []struct {
             Low  int64
             High int64
         }
@@ -80,10 +81,10 @@ type Suburb struct {
 Application usage
 ---------------------
 
-To query the data using the built-in app simply pass a p (postcode) flag to the application:
+To query the data using the built-in app simply pass a postcode flag to the Makefile run command:
 
 ```bash
-$ go run app/main.go -p 2041
+$ make run postcode=2016
 ```
 
 Importer usage
@@ -92,7 +93,7 @@ Importer usage
 To run the importer:
 
 ```bash
-$ go run import/main.go
+$ make import
 ```
 This will read data from the data/import.csv spreadsheet and load it into json objects. This only
 needs to be run if updates to the raw csv data have occurred.

@@ -9,26 +9,23 @@ import (
 
 func main() {
 
-	var postcode = flag.Int64("p", 0, "A valid Australian postcode")
+	var postcode = flag.Int64("p", 0, "A valid 4-digit Australian postcode")
 	flag.Parse()
 
-	fmt.Println()
-	fmt.Println("Welcome to Ozdata")
-	fmt.Println()
-
 	if *postcode == 0 {
-		fmt.Println("Please enter a valid postcode to check")
+		fmt.Println("Please enter a valid Australian postcode to check")
 		return
 	}
 
-	suburbs, err := ozdata.NewSuburbs()
+	filename := "data/suburbs.json"
+	suburbs, err := ozdata.NewSuburbs(filename)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
 	fmt.Println("Getting suburb By postcode:", *postcode)
-	suburb, err := suburbs.Suburb(*postcode)
+	suburb, err := suburbs.GetSuburbByCode(*postcode)
 	if err != nil {
 		fmt.Println(err)
 		return
