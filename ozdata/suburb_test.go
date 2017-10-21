@@ -39,7 +39,7 @@ var suburbTests = []struct {
 }
 
 func Test_GettingSuburbByCode(t *testing.T) {
-	suburbs, err := NewSuburbs(validInput)
+	suburbs, err := LoadSuburbs()
 	if err != nil {
 		t.Errorf("Input %q: Error: %q", validInput, err)
 	}

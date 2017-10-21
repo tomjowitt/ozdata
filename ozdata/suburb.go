@@ -37,6 +37,19 @@ type Suburbs struct {
 	Suburbs SuburbMap `json:"suburbs"`
 }
 
+func LoadSuburbs() (response Suburbs, err error) {
+	data := Suburbs{
+		Suburbs: SuburbMap{},
+	}
+
+	err = json.Unmarshal([]byte(DATA), &data)
+	if err != nil {
+		return Suburbs{}, errors.New("Error reading JSON data")
+	}
+
+	return data, err
+}
+
 // NewSuburbs initialises the postcode data from a JSON file
 func NewSuburbs(filename string) (response Suburbs, err error) {
 
