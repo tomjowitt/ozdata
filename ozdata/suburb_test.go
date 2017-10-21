@@ -45,7 +45,7 @@ func Test_GettingSuburbByCode(t *testing.T) {
 	}
 
 	for _, st := range suburbTests {
-		_, err = suburbs.GetSuburbByCode(st.in)
+		_, err = suburbs.GetSuburbsByPostCode(st.in)
 		if err != nil && st.out == true {
 			t.Errorf("Input %d: Error: %q", st.in, err)
 		}
