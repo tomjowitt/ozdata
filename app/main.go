@@ -25,12 +25,12 @@ func main() {
 	}
 
 	fmt.Println("Getting suburb By postcode:", *postcode)
-	suburb, err := suburbs.GetSuburbByCode(*postcode)
+	suburb, err := suburbs.GetSuburbsByPostCode(*postcode)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(suburb)
+	fmt.Println(fmt.Sprintf("%v", suburb))
 	fmt.Println()
 
 	return
